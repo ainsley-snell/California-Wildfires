@@ -48,6 +48,6 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
-# Token file
-Token
-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
+#token file
+token
+
