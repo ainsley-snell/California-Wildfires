@@ -1,5 +1,5 @@
 # California-Wildfires
 This is a repo for Stat 100 project
 
-Here is another test! 
+Here is yet another test! 
 
