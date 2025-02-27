@@ -9,13 +9,13 @@ editor_options:
 ```{r}
 library(tidyverse)
 
-# counties <- read_csv( "california_counties.csv", show_col_types = FALSE )
+counties <- read_csv( "California_Counties_-3636863462195930370.csv", show_col_types = FALSE )
 ```
 
 # Simulated Data 
 
 ```{r}
-simulated_risk <- tibble(county = rep("county", 58),
+simulated_risk <- tibble(county = counties$`County Name`,
                          risk = runif(n = 58, min = 0, max = 100))
 
 simulated_risk
