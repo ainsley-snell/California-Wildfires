@@ -1,0 +1,23 @@
+---
+title: "California Wildfires"
+author: "Lillian and Ainsley"
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+library(tidyverse)
+
+# counties <- read_csv( "california_counties.csv", show_col_types = FALSE )
+```
+
+# Simulated Data 
+
+```{r}
+simulated_risk <- tibble(county = rep("county", 58),
+                         risk = runif(n = 58, min = 0, max = 100))
+
+simulated_risk
+```
+
