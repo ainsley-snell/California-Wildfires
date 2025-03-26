@@ -117,28 +117,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>counties <span class="ot">&lt;-</span> <span class="fu">read_csv</span>( <span class="st">"California_Counties_-3636863462195930370.csv"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="simulated-data" class="level1">
 <h1>Simulated Data</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>simulated_risk <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">county =</span> <span class="fu">rep</span>(<span class="st">"county"</span>, <span class="dv">58</span>),</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">risk =</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">58</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>))</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>simulated_risk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>simulated_risk <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">county =</span> counties<span class="sc">$</span><span class="st">`</span><span class="at">County Name</span><span class="st">`</span>,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">risk =</span> <span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">58</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>simulated_risk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 58 × 2
-   county  risk
-   &lt;chr&gt;  &lt;dbl&gt;
- 1 county  1.72
- 2 county 20.5 
- 3 county 23.0 
- 4 county 98.7 
- 5 county 10.2 
- 6 county 21.6 
- 7 county 97.1 
- 8 county 47.5 
- 9 county 67.4 
-10 county 43.1 
+   county     risk
+   &lt;chr&gt;     &lt;dbl&gt;
+ 1 Alameda    8.34
+ 2 Alpine    89.3 
+ 3 Amador    62.2 
+ 4 Colusa    90.8 
+ 5 El Dorado 88.8 
+ 6 Humboldt  65.2 
+ 7 Inyo       2.22
+ 8 Kern      63.7 
+ 9 Lake      93.0 
+10 Lassen    72.3 
 # ℹ 48 more rows</code></pre>
 </div>
 </div>
