@@ -4,9 +4,25 @@ format: revealjs
 editor: visual
 ---
 
-## Quarto
+```{r}
+library(tidyverse)
+library(sf)
+library(tmap)
+library(geojsonsf)
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+
+
+fires <- geojson_sf("California_Fire_Perimeters_(1950%2B).geojson" )
+
+recent_fires <- fires |>
+  filter( YEAR_ == 2020 )
+
+tmap_options( basemap.server = "USGS")
+tmap_mode( "view" )
+tm_shape( recent_fires ) +
+  tm_polygons( id = "FIRE_NAME", fill = "firebrick")
+
+```
 
 ## Bullets
 
