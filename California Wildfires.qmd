@@ -14,7 +14,6 @@ counties <- read_csv( "California_Counties_-3636863462195930370.csv", show_col_t
 
 california <- read_csv("https://hub.arcgis.com/api/v3/datasets/c3c10388e3b24cec8a954ba10458039d_0/downloads/data?format=csv&spatialRefId=3857&where=1%3D1")
 
-ca
 ```
 
 
