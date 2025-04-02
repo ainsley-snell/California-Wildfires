@@ -51,3 +51,9 @@ rsconnect/
 #token file
 token
 
+# ignore all the html stuff:
+slides_files/
+slides.html
+
+# ignore GeoJSON file(s):
+*.geojson
