@@ -1,5 +1,5 @@
 ---
-title: "Slides"
+title: "California Wildfire Correlation"
 format: revealjs
 editor: visual
 ---
@@ -25,4 +25,9 @@ tm_shape( recent_fires ) +
   tm_polygons( id = "FIRE_NAME", fill = "firebrick")
 
 ```
+
+# What do you plan to do with this data?
+We plan to look at we parameter, precipitation, and temperature data to show correlation 
+We are currently gathering precipitation data and tempertaure data from the State of  California 
+We chose 2020 because it was the time with the most data availale.
 
