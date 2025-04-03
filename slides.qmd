@@ -1,10 +1,13 @@
 ---
 title: "California Wildfire Correlation"
+authors: "Ainsley Snell and Lillian Heitz"
 format: revealjs
 editor: visual
 ---
 
-## 2020 wildfire perimeters
+
+
+## 2020 Wildfire Perimeters
 
 ```{r}
 library(tidyverse)
@@ -26,8 +29,12 @@ tm_shape( recent_fires ) +
 
 ```
 
-# What do you plan to do with this data?
-We plan to look at we parameter, precipitation, and temperature data to show correlation 
-We are currently gathering precipitation data and tempertaure data from the State of  California 
-We chose 2020 because it was the time with the most data availale.
+## What do we plan to do with this data?
+- We aim to predict current wildfire risk across California’s 58 counties using past fire data, including 2020 wildfire perimeters, alongside historical weather data (average monthly temperature and precipitation).
+- This map displays wildfire perimeters in 2020 and its data is taken from the California National Resource Agency (CNRA).
+- Understanding past fire-affected areas is crucial as these landscapes are more susceptible to extreme weather patterns, influencing present fire risks.
+
+
+
+
 
