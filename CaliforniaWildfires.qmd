@@ -97,3 +97,45 @@ tm_shape(ca_precip_map) +
   tm_layout(title = "California County Precipitation - 2020")
 
 ```
+
+```{r}
+temperature_data <- read_csv("california_temperature.csv")
+
+
+temperature_data <- temperature_data |>
+  mutate( Name = sub( pattern = " County", replacement = "", x = Name, fixed =TRUE ))
+
+yearly_avg_temperature <- temperature_data |>
+group_by(Name, Year) |>
+  summarize(avg_temp=mean(Temperature))
+
+ggplot(yearly_avg_temperature)+
+  geom_line(aes(x=Year, y=avg_temp, color=Name))+
+  theme_bw(base_size = 12)+
+  theme(legend.position="none") +
+  expand_limits(y=0) +
+  labs(x="Years", y="Average Temperature", title= "Avg.Precipitation for California Counties from 2015-2024")
+```
+
+```{r}
+ca_2020_temp <- yearly_avg_temperature |> 
+  filter( Year == 2020 )
+
+US <- gadm("USA", level = 2, path = getwd())
+CA <- US[US$NAME_1 == "California", ]
+CA <- st_as_sf(CA)
+
+ca_temp_map <- CA |>
+  left_join(ca_2020_temp, by = c("NAME_2" = "Name"))
+
+tmap_options(basemap.server="OpenStreetMap")
+tmap_mode("view")
+
+tm_shape(ca_temp_map) + 
+  tm_polygons( fill = "avg_temp", palette = "Blues", 
+              id = "NAME_2", title = "Avg temperature (2020)") +
+  tm_layout(title = "California County Temperature- 2020")
+
+
+```
+
