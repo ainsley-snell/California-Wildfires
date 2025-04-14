@@ -57,3 +57,9 @@ slides.html
 
 # ignore GeoJSON file(s):
 *.geojson
+
+# ignore HTML stuff:
+California-Wildfires_files/
+CaliforniaWildfires_files/
+CaliforniaWildfires.html
+
