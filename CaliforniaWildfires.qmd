@@ -51,7 +51,6 @@ tm_shape( recent_fires ) +
 ```
 
 # Precipitation Graph
-
 ```{r}
 library(readxl)
 library(tidyverse)
