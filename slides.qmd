@@ -164,3 +164,45 @@ tm_shape(ca_temp_map) +
 - However, fires did not occur in the hottest or driest zones, possibly due to less vegetation to burn there.
 
 - We need to look at vegetation density next to conclude our hypothesis that areas with a combination of moderate to low precipitation, warm temperatures, and significant vegetation are most at risk for wildfires.
+
+
+## Temperature Statistics 
+
+```{r}
+library(tinytable)
+library(tidyverse)
+
+temperature_data <- read_csv("california_temperature.csv")
+
+
+temperature_data <- temperature_data |>
+  mutate( Name = sub( pattern = " County", replacement = "", x = Name, fixed =TRUE ))
+
+yearly_avg_temperature <- temperature_data |>
+group_by(Name, Year) |>
+  summarize(avg_temp=mean(Temperature))
+ca_2020_temp <- yearly_avg_temperature |> 
+  filter( Year == 2020 )
+
+temp_summary2020 <- ca_2020_temp |>
+  ungroup() |>
+  summarize( "2020 Average temperature" = mean( avg_temp ),
+             "2020 Median temperature" = median( avg_temp))
+tt(temp_summary2020,  digits = 4)
+
+ca_2015_temp <- yearly_avg_temperature |> 
+  filter( Year == 2015 )
+temp_summary2015 <- ca_2015_temp |>
+  ungroup() |>
+  summarize( "2015 Average temperature" = mean( avg_temp ),
+             "2015 Median temperature" = median( avg_temp))
+tt(temp_summary2015, digits = 4)
+
+```
+
+
+
+
+## Analysis of Statistics
+- With our summary statistics of average temperature and in the future average precipitation for each California county from 2015 to 2020, we plan to analyze climate trends over time. By calculating year to year differences, we can identify whether counties are experiencing increasing temperature, decreasing precipitation, or both. These trends allow us to project likely climate conditions for 2025, such as higher average temperatures or reduced precipitation.
+- We can use these “current climate conditions” in our final assessment of California’s counties current wildfire risk along with past wildfire history and past vegetation density history. 
