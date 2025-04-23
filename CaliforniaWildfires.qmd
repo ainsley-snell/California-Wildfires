@@ -36,22 +36,27 @@ library(sf)
 library(tmap)
 library(geojsonsf)
 
-
-
 fires <- geojson_sf("California_Fire_Perimeters_(1950%2B).geojson" )
 
 recent_fires <- fires |>
   filter( YEAR_ == 2020 )
 
+US <- gadm("USA", level = 2, path = getwd())
+CA <- US[US$NAME_1 == "California", ]
+CA <- st_as_sf(CA)
+
 tmap_options( basemap.server = "USGS")
 tmap_mode( "view" )
-tm_shape( recent_fires ) +
+
+
+tm_shape(CA) + tm_polygons(fill= "grey", col = "white")+
+  
+ tm_shape( recent_fires ) +
   tm_polygons( id = "FIRE_NAME", fill = "firebrick")
 
 ```
 
 # Precipitation Graph
-
 ```{r}
 library(readxl)
 library(tidyverse)
