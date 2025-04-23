@@ -18,7 +18,11 @@ california <- read_csv("https://hub.arcgis.com/api/v3/datasets/c3c10388e3b24cec8
 ```
 
 
+
+
 # Simulated Data 
+
+
 
 ```{r}
 simulated_risk <- tibble(county = counties$`County Name`,
@@ -28,7 +32,11 @@ view(simulated_risk)
 
 ```
 
+
+
 # Wildfire Perimeter Map
+
+
 ```{r}
 
 library(tidyverse)
@@ -50,7 +58,11 @@ tm_shape( recent_fires ) +
 
 ```
 
+
+
 # Precipitation Graph
+
+
 
 ```{r}
 library(readxl)
@@ -73,7 +85,6 @@ ggplot(yearly_avg_precipitation)+
   expand_limits(y=0) +
   labs(x="Years", y="Average Precipitation", title= "Avg.Precipitation for California Counties from 2015-2024")
 ```
-
 
 ```{r}
 
@@ -154,7 +165,6 @@ tt(temp_summary)
 
 ```
 
-
 ```{r}
 precip_summary <- ca_2020_precip |>
 ungroup() |>
@@ -178,6 +188,4 @@ summary_stats <-
   bind_cols(temp_summary, precip_summary)
 tt(summary_stats, digits = 3)
 ```
-
-
 

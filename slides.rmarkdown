@@ -5,11 +5,15 @@ format: revealjs
 editor: visual
 ---
 
+
+
 ## Introduction
 
 -   We are looking at wildfire parameters, precipitation, and average temperatures to see if there is correlation.
 
 ## 2020 Wildfire Parameters
+
+
 
 ```{r}
 library(tidyverse)
@@ -31,6 +35,8 @@ tm_shape( recent_fires ) +
 
 ```
 
+
+
 ## What do we plan to do with this data?
 
 -   We aim to predict current wildfire risk across California’s 58 counties using past fire data, including 2020 wildfire perimeters, alongside historical weather data (average monthly temperature and precipitation).
@@ -41,6 +47,8 @@ tm_shape( recent_fires ) +
 
 -   Northern coastal and mountainous counties had higher precipitation averages (Ex: Del Norte, Humboldt, Trinity)
 -   Many southern and inland central counties had lower precipitation averages
+
+
 
 ```{r}
 library(readxl)
@@ -76,6 +84,8 @@ tm_shape(ca_precip_map) +
 
 ```
 
+
+
 ## Correlation
 
 -   Despite higher rainfall in northern California, wildfires still occurred extensively there.
@@ -83,3 +93,4 @@ tm_shape(ca_precip_map) +
 -   While low precipitation is generally associated with increased wildfire risk, the presence of large fires even in relatively wetter counties suggests that precipitation alone does **not** fully determine fire activity; fuel loads, wind patterns, and temperature play major roles as well.
 
 -   To accurately predict wildfires, we need to assess these attributes alongside the precipitation data.
+
