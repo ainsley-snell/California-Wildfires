@@ -4,6 +4,7 @@ authors: "Ainsley Snell and Lillian Heitz"
 format: revealjs
 editor: visual
 ---
+
 ## Intro
 - Our project is inspired by these California Wildfires and their disastrous aftermath that have left California in a vulnerable state. 
 -  We aim to predict current wildfire risk across California’s 58 counties to draw correlation as to why certain counties are more at risk at others.
@@ -53,14 +54,11 @@ tm_shape(CA) + tm_polygons(fill= "grey", col = "white")+
 -   Fires are more concentrated in wooded areas with great amounts of burnable fuel (Redwood Area).
 -   Understanding past fire-affected areas is crucial as these landscapes are more susceptible to extreme weather patterns, influencing present fire risks.
 
-<<<<<<< HEAD
 ## 2020 Precipitation Map
 
 -   Northern coastal and mountainous counties had higher precipitation averages (Ex: Del Norte, Humboldt, Trinity)
 -   Many southern and inland central counties had lower precipitation averages
-=======
-## 2020 Avg. Precipitation Map
->>>>>>> 8a8f87850831a4f9ef2be7caf96ea2889273fa4b
+
 
 ```{r}
 library(readxl)
@@ -94,10 +92,6 @@ tm_shape(ca_precip_map) +
               id = "NAME_2", title = "Avg Precipitation (2020)") +
   tm_layout(title = "California County Precipitation - 2020")
 
-<<<<<<< HEAD
-
-```
-=======
 ```
 
 ## 2020 Avg. Precipitation Map
@@ -107,7 +101,6 @@ tm_shape(ca_precip_map) +
 ## Comparison
 
 ![](twoclimategraph.png)
->>>>>>> 8a8f87850831a4f9ef2be7caf96ea2889273fa4b
 
 ## Correlation
 
@@ -116,8 +109,7 @@ tm_shape(ca_precip_map) +
 -   While low precipitation is generally associated with increased wildfire risk, the presence of large fires even in relatively wetter counties suggests that precipitation alone does **not** fully determine fire activity; fuel loads, wind patterns, and temperature play major roles as well.
 
 -   To accurately predict wildfires, we need to assess these attributes alongside the precipitation data.
-<<<<<<< HEAD
-=======
+
 
 ## 2020 Avg. Temperature Map
 
@@ -164,8 +156,6 @@ tm_shape(ca_temp_map) +
 ## Comparison
 
 
-
-
 ![](climategraph.png)
 
 ## Analysis
@@ -174,4 +164,3 @@ tm_shape(ca_temp_map) +
 - However, fires did not occur in the hottest or driest zones, possibly due to less vegetation to burn there.
 
 - We need to look at vegetation density next to conclude our hypothesis that areas with a combination of moderate to low precipitation, warm temperatures, and significant vegetation are most at risk for wildfires.
->>>>>>> 8a8f87850831a4f9ef2be7caf96ea2889273fa4b
