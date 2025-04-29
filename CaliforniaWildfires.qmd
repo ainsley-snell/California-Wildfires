@@ -79,7 +79,7 @@ ggplot(yearly_avg_precipitation)+
   labs(x="Years", y="Average Precipitation", title= "Avg.Precipitation for California Counties from 2015-2024")
 ```
 
-
+# Precipitation Map
 ```{r}
 
 
@@ -103,6 +103,7 @@ tm_shape(ca_precip_map) +
 
 ```
 
+# Temperature Graph
 ```{r}
 temperature_data <- read_csv("california_temperature.csv")
 
@@ -122,6 +123,7 @@ ggplot(yearly_avg_temperature)+
   labs(x="Years", y="Average Temperature", title= "Avg.Precipitation for California Counties from 2015-2024")
 ```
 
+# Temperature Map
 ```{r}
 ca_2020_temp <- yearly_avg_temperature |> 
   filter( Year == 2020 )
@@ -144,6 +146,8 @@ tm_shape(ca_temp_map) +
 
 ```
 
+
+# Summary Stats- 2020 Temperature
 ```{r}
 library(tinytable)
 library(tidyverse)
@@ -159,7 +163,7 @@ tt(temp_summary)
 
 ```
 
-
+# 2020 Precipitation
 ```{r}
 precip_summary <- ca_2020_precip |>
 ungroup() |>
@@ -179,10 +183,172 @@ ungroup() |>
 #make a table
 tt(precip_summary)
 
-summary_stats <- 
-  bind_cols(temp_summary, precip_summary)
-tt(summary_stats, digits = 3)
+#summary_stats <- 
+  #//bind_cols(temp_summary, precip_summary)
+#//tt(summary_stats, digits = 3)
+```
+
+# 2021 Temperatures And Precipitation
+```{r}
+library(tinytable)
+library(tidyverse)
+
+ca_2021_temp <- yearly_avg_temperature |> 
+  filter( Year == 2021 )
+ca_2021_precip <- yearly_avg_precipitation |> 
+  filter( Year == 2021 )
+
+temp_summary21 <- ca_2021_temp |>
+  ungroup() |>
+  summarize( "Average temperature" = mean( avg_temp ),
+             "Median temperature" = median( avg_temp))
+
+#make a table
+tt(temp_summary21) 
+
+ca_2021_precip <- yearly_avg_precipitation |> 
+  filter( Year == 2021 )
+
+precip_summary21 <- ca_2021_precip |>
+  ungroup() |>
+  summarize( "Average precipitation" = mean( avg_precip ),
+             "Median precipitation" = median( avg_precip))
+
+#make a table
+tt(precip_summary21) 
+
+```
+
+# 2022 Temperatures And Precipitation
+```{r}
+library(tinytable)
+library(tidyverse)
+
+ca_2022_temp <- yearly_avg_temperature |> 
+  filter( Year == 2022 )
+ca_2022_precip <- yearly_avg_precipitation |> 
+  filter( Year == 2022 )
+
+temp_summary22 <- ca_2022_temp |>
+  ungroup() |>
+  summarize( "Average temperature" = mean( avg_temp ),
+             "Median temperature" = median( avg_temp))
+
+#make a table
+tt(temp_summary22) 
+
+ca_2022_precip <- yearly_avg_precipitation |> 
+  filter( Year == 2022 )
+
+precip_summary22 <- ca_2022_precip |>
+  ungroup() |>
+  summarize( "Average precipitation" = mean( avg_precip ),
+             "Median precipitation" = median( avg_precip))
+
+#make a table
+tt(precip_summary22) 
+
+```
+
+# 2023 Temperatures And Precipitation
+```{r}
+library(tinytable)
+library(tidyverse)
+
+ca_2023_temp <- yearly_avg_temperature |> 
+  filter( Year == 2023 )
+ca_2023_precip <- yearly_avg_precipitation |> 
+  filter( Year == 2023 )
+
+temp_summary23 <- ca_2023_temp |>
+  ungroup() |>
+  summarize( "Average temperature" = mean( avg_temp ),
+             "Median temperature" = median( avg_temp))
+
+#make a table
+tt(temp_summary23) 
+
+ca_2023_precip <- yearly_avg_precipitation |> 
+  filter( Year == 2023 )
+
+precip_summary23 <- ca_2023_precip |>
+  ungroup() |>
+  summarize( "Average precipitation" = mean( avg_precip ),
+             "Median precipitation" = median( avg_precip))
+
+#make a table
+tt(precip_summary23) 
+
+```
+
+# 2024 Temperatures And Precipitation
+```{r}
+library(tinytable)
+library(tidyverse)
+
+ca_2024_temp <- yearly_avg_temperature |> 
+  filter( Year == 2024 )
+ca_2024_precip <- yearly_avg_precipitation |> 
+  filter( Year == 2024 )
+
+temp_summary24 <- ca_2024_temp |>
+  ungroup() |>
+  summarize( "Average temperature" = mean( avg_temp ),
+             "Median temperature" = median( avg_temp))
+
+#make a table
+tt(temp_summary24) 
+
+ca_2024_precip <- yearly_avg_precipitation |> 
+  filter( Year == 2024 )
+
+precip_summary24 <- ca_2024_precip |>
+  ungroup() |>
+  summarize( "Average precipitation" = mean( avg_precip ),
+             "Median precipitation" = median( avg_precip))
+
+#make a table
+tt(precip_summary24) 
+
 ```
 
 
+```{r}
+years <- c(2020,2021,2022,2023,2024)
+
+summary_statstemp <- 
+  bind_rows(temp_summary, temp_summary21, temp_summary22,temp_summary23,temp_summary24) |>
+  bind_cols(years) 
+
+tt(summary_statstemp)
+
+names( summary_statstemp ) <- c( "Average Temperature", "Median Temperature", "Year")
+
+summary_statsprecip <- 
+  bind_rows(precip_summary, precip_summary21, precip_summary22,precip_summary23,precip_summary24) |>  bind_cols(years)
+
+tt(summary_statsprecip)
+
+names( summary_statsprecip ) <- c( "Average Precipitation", "Median Precipitation", "Year")
+
+ggplot(summary_statstemp)+
+  geom_line(aes(x=Year, y=`Average Temperature`))+
+  theme_bw(base_size = 12)+
+  theme(legend.position="none") +
+  expand_limits(y=0) +
+  labs(x="Years", y="Average Temperature (degrees F)", title= "Avg.Temperature for California from 2020-2024")
+
+ggplot(summary_statsprecip)+
+  geom_line(aes(x=Year, y=`Average Precipitation`))+
+  theme_bw(base_size = 12)+
+  theme(legend.position="none") +
+  expand_limits(y=0) +
+  labs(x="Years", y="Average Precipitation (in.)", title= "Avg.Precipitation for California from 2020-2024")
+
+
+
+
+
+
+```
 
