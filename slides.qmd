@@ -271,10 +271,10 @@ tt(summary_statsprecip)
 
 ## Analysis of Statistics
 
-- Between 2020 and 2024, average temperature: 58.8 degrees Fahrenheit. 
+- Between 2020 and 2024, average temperature: 58.8 degrees Fahrenheit 
 - The median and average temperatures over these years essentially stayed the same 
-- Average precipitation increased from 1.176 to 2.755. 
-- The median precipitation increased from 0.933 to 2.250
+- Average precipitation increased from 1.176 to 2.755 in. 
+- The median precipitation increased from 0.933 to 2.250 in.
 
 
 
@@ -305,5 +305,5 @@ ggplot(summary_statsprecip)+
 
 - More vegetation growth=increased fuel availability for fires
 
-- Our project demonstrates that wildfire risk in California is not driven by a single factor like temperature or precipitation, but by the complex interaction of climate conditions, geography, and likely vegetation density.
+- Our project demonstrates that wildfire risk in California is not driven by a single factor like temperature or precipitation, but by the complex interaction of climate conditions, geography, and vegetation density.
 
