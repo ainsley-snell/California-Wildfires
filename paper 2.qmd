@@ -12,9 +12,11 @@ editor_options:
 
 ##Introduction:
 
-Earlier this year, uncontrollable wildfires in the Los Angeles area destroyed over 18,000 homes and structures leaving 200,000 people to evacuate the region. Along with property damage, the wildfires caused a significant decline in air quality leading to a health emergency in LA county. The financial costs of just the Palisades and Eaton wildfires could reach over $150 billion with insured losses along covering $8 billion. Our project is inspired by these California Wildfires and their disastrous aftermath that have left California in a vulnerable state. We aim to predict current wildfire risk across California’s 58 counties to draw correlation as to why certain counties are more at risk than others. We plan to do this using past fire data, including 2020 wildfire perimeters, alongside historical weather data taken from the California National Resource Agency (CNRA). The weather data consists of average monthly temperature and precipitation. Despite the influence for the project being the 2025 Palisades fires, there is not enough current data to determine their specific correlation. We chose to analyse the year 2020, being the most current year with the most data. We hypothesize that higher temperature and less rain would correlate with areas with more fires, making dryer and higher temperature areas more susceptible to wildfires.
+Earlier this year, uncontrollable wildfires in the Los Angeles area destroyed over 18,000 homes and structures leaving 200,000 people to evacuate the region. Along with property damage, the wildfires caused a significant decline in air quality leading to a health emergency in LA county. The financial costs of just the Palisades and Eaton wildfires could reach over \$150 billion with insured losses along covering \$8 billion. Our project is inspired by these California Wildfires and their disastrous aftermath that have left California in a vulnerable state. We aim to predict current wildfire risk across California’s 58 counties to draw correlation as to why certain counties are more at risk than others. We plan to do this using past fire data, including 2020 wildfire perimeters, alongside historical weather data taken from the California National Resource Agency (CNRA). The weather data consists of average monthly temperature and precipitation. Despite the influence for the project being the 2025 Palisades fires, there is not enough current data to determine their specific correlation. We chose to analyse the year 2020, being the most current year with the most data. We hypothesize that higher temperature and less rain would correlate with areas with more fires, making dryer and higher temperature areas more susceptible to wildfires.
 
 ```{r, echo=FALSE}
+suppressMessages({
+ 
 
 library(tidyverse)
 library(sf)
@@ -22,7 +24,7 @@ library(tmap)
 library(geojsonsf)
 library(readxl)
 library(geodata)
-
+})
 
 fires <- geojson_sf("California_Fire_Perimeters_(1950%2B).geojson" )
 
@@ -43,8 +45,9 @@ tm_shape(CA) + tm_polygons(fill= "grey", col = "white")+
   tm_polygons( id = "FIRE_NAME", fill = "firebrick")
 
 ```
-*Fire parameters*
-Using GeoJSON data from the California Natural Resource Agency we created a map that showed the parameters of all of the fires in the year 2020.  The fires occurred largely in wooded areas in the north and coastal areas of the state. This is due to higher fuel loads to burn in those areas of the state. Similarly, less fires occurred in the area of Death Valley National Park likely because of the dryness of the area. Understanding past fire-affected areas is crucial as these landscapes are more susceptible to extreme weather patterns, influencing present fire risks. The map visualization allows for clear identification of fire-prone regions, supporting future fire management and prevention strategies.
+
+*Fire parameters* Using GeoJSON data from the California Natural Resource Agency we created a map that showed the parameters of all of the fires in the year 2020. The fires occurred largely in wooded areas in the north and coastal areas of the state. This is due to higher fuel loads to burn in those areas of the state. Similarly, less fires occurred in the area of Death Valley National Park likely because of the dryness of the area. Understanding past fire-affected areas is crucial as these landscapes are more susceptible to extreme weather patterns, influencing present fire risks. The map visualization allows for clear identification of fire-prone regions, supporting future fire management and prevention strategies.
+
 ```{r, echo=FALSE}
 library(readxl)
 library(tidyverse)
@@ -78,10 +81,11 @@ tm_shape(ca_precip_map) +
   tm_layout(title = "California County Precipitation - 2020")
 
 ```
-The map visualisation of precipitation data shows that northern coastal and mountainous counties had higher precipitation averages (Ex: Del Norte, Humboldt, Trinity).Del Norte country had the highest average precipitation for 2020 While in contrast any southern and inland central counties had lower precipitation averages, this is expected as these counties are likely deserts. This geographic disparity highlights the role of topography and location in shaping regional weather patterns. 
 
-```{r, echo=FALSE} 
-message=FALSE
+The map visualisation of precipitation data shows that northern coastal and mountainous counties had higher precipitation averages (Ex: Del Norte, Humboldt, Trinity).Del Norte country had the highest average precipitation for 2020 While in contrast any southern and inland central counties had lower precipitation averages, this is expected as these counties are likely deserts. This geographic disparity highlights the role of topography and location in shaping regional weather patterns.
+
+```{r, echo=FALSE}
+
 temperature_data <- read_csv("california_temperature.csv")
 
 
@@ -113,6 +117,7 @@ tm_shape(ca_temp_map) +
 ```
 
 The map of average temperatures visualizes that the northern counties are more likely to have lower average temperatures between 40-55 degrees. Southern counties closer to the equator are likely to have higher average temperatures between 70-80 degrees fahrenheit. The higher temperature would be expected to yield more wildfires, however there seems to be very little correlation between the two. This is likely due to a lack of fuel load and high percentages of dry lands with little vegetation.
+
 ```{r, echo=FALSE}
 library(tinytable)
 library(tidyverse)
@@ -219,7 +224,7 @@ summary_statsprecip <- summary_statsprecip |>
 tt(summary_statsprecip)
 
 ```
-Mean and median are able to provide insight into the average temperatures for each year and determine if there is a trend between the years. By calculating year to year differences, we can identify whether counties are experiencing increasing temperature, decreasing precipitation, or both. These trends allow us to project likely climate conditions for 2025, such as higher average temperatures or reduced precipitation. We determined that between 2020 and 2024 the average temperature in the state of California was 58.8 degrees fahrenheit. The median and average temperatures over these years essentially stayed the same. ( figure of statistics)  Additionally over the course of 5 years the average precipitation increased from 1.176 to 2.755. The median temperatures also increased from 0.933 to 2.250, showing a trend of increased precipitation. 
+
+Mean and median are able to provide insight into the average temperatures for each year and determine if there is a trend between the years. By calculating year to year differences, we can identify whether counties are experiencing increasing temperature, decreasing precipitation, or both. These trends allow us to project likely climate conditions for 2025, such as higher average temperatures or reduced precipitation. We determined that between 2020 and 2024 the average temperature in the state of California was 58.8 degrees fahrenheit. The median and average temperatures over these years essentially stayed the same. ( figure of statistics) Additionally over the course of 5 years the average precipitation increased from 1.176 to 2.755. The median precipitation also increased from 0.933 to 2.250, showing a trend of increased precipitation.
 
 In summary, Despite higher rainfall in northern California, wildfires still occurred extensively there. Low precipitation is generally associated with increased wildfire risk, the presence of large fires even in relatively wetter counties suggests that precipitation alone does not fully determine fire activity; fuel loads, wind patterns, and temperature play major roles as well. To accurately predict wildfires, we need to assess these attributes alongside the precipitation data. This was a lapse in data finding proving our hypothesis incorrect, however the data is still valuable to research and weather forecasting. Our project demonstrates that wildfire risk in California is not driven by a single factor like temperature or precipitation, but by the complex interaction of climate conditions, geography, and likely vegetation density.
-
