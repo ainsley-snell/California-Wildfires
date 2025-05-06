@@ -14,7 +14,7 @@ editor: visual
 
 
 
-## 2020 Wildfire Parameters
+## 2020 Wildfire Perimeters
 
 ```{r}
 library(tidyverse)
